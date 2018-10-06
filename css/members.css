@@ -1,0 +1,52 @@
+
+#content h2{
+    text-align: center;
+}
+#content .row img{
+    width: 120px;
+    height: 160px;
+    margin-top: 10px;
+}
+#content .row .caption h3,p{
+    text-align: center;
+}
+#content .row .caption h3{
+    font-size: 16px;
+    margin-top: -1px;
+}
+#content .row .caption p{
+    font-size: 12px;
+
+}
+.thumbnail{
+    /******更新相框大小****/
+    width: 130px;
+    height: 240px;
+    /******更新相框大小****/
+}
+/*LAB ZC*/
+#header_right .LAB{
+    font-size: 17px;
+    font-weight: bold;
+}
+#footer {
+
+    width: 178%;
+    /*background-color: red;*/
+    height: 8%;
+    bottom: 0;
+    border-top: 2px solid #ffe600;
+    /*border-top-color: yellow;*/
+    overflow: hidden;
+    margin-left: -78%;
+}
+
+#footer p span {
+    margin-left: 42%;
+    display: inline-block;
+    margin-top: 0.5%;
+}
+
+#footer p span a {
+    text-decoration: none;
+}

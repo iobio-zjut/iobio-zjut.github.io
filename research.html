@@ -1,0 +1,413 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="keywords" content="RF-Phos, NCAT, NCA&amp;T, structural bioinformatics, Bioinformatics,protein structure prediction, protein function prediction, Dukka KC, Random Forest, RF, computational biology, machine learning,
+               protein classification, phosphorylation site prediction, post-translational modification, Protein Structure Prediction, Protein Side Chain Packing, symmetry in protein, multi-domain protein structure prediction, North Carolina A&amp;T State University, RFNR, Feature Extraction, Protein">
+    <meta name="description" content=" bioinformatics, NCAT,  RF-Phos, Dukka KC, Random Forest, RF, computational biology, machine learning,
+               protein classification, phosphorylation site prediction, post-translational modification, Protein Structure Prediction, Protein Side Chain Packing, symmetry in protein, multi-domain protein structure prediction, North Carolina A&amp;T State University, RFNR, Feature Extraction, Protein">
+    <!--link rel="stylesheet" href="/static/css/.css"-->
+    <title>I-TASSER WORKSHOP 2018</title>
+    <script src="lib/jquery/jquery.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css">
+    <link rel="shortcut icon" href="images/bitbug_favicon.ico" type="image/x-icon">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        /*<!--巨幕-->*/
+        .jumbotron {
+            margin: 0;
+            padding: 0;
+            background-color: #1465b7;
+        }
+
+        .jumbotron .container {
+            width: 80%;
+
+        }
+
+        #zjut_logo {
+            margin-left: -5%;
+            margin-top: 0.5%;
+        }
+
+        .jumbotron .container p {
+            font-size: 36px;
+            font-family: "Times New Roman";
+            color: white;
+            float: right;
+            margin-top: 2%;
+            margin-right: 18%;
+        }
+
+        /******样式更新******/
+        #id_content #direction {
+            font-size: 20px;
+            line-height: 40px;
+        }
+
+        #id_content #news {
+            font-size: 18px;
+            line-height: 30px;
+        }
+
+
+
+        #nav ul {
+            list-style: none;
+            list-style-type: none;
+            padding: 0;
+            margin: 20px auto;
+            width: 90%;
+            /*均匀摆放*/
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        #nav ul li {
+            font-weight: normal;
+            float: left;
+        }
+
+        #nav ul li a {
+            display: block;
+            border-radius: .5em;
+            color: white;
+            font-size: 16px;
+            text-decoration: none;
+        }
+
+        #nav ul li a:hover {
+            text-decoration: none
+        }
+
+        /*正文*/
+        #id_content {
+            width: 70%;
+            margin: 10px auto;
+        }
+
+        /*小标题*/
+        #id_content h2 {
+            color: #808080;
+            font-family: 微软雅黑;
+            font-size: 30px;
+            text-align: center;
+        }
+
+        /*段落*/
+        #id_content .justify {
+            font-size: 20px;
+            line-height: 40px;
+        }
+
+        /*头衔*/
+        #id_content .left {
+            font-size: 20px;
+        }
+
+        table {
+            height: 80%;
+            width: 80%; /*  必须设置一个宽度， margin: 0 auto才能使之居于父组件中央*/
+            margin: 10px auto; /*  通过设置外边距（margin）中的左右外边距属性为auto使之居于父组件（body）中间*/
+        }
+
+        th, td {
+            text-align: center;
+        }
+
+        /**********content***********/
+        #body .content {
+            float: left;
+            margin: 0 10px 0 80px;
+            padding: 0;
+            width: 50%;
+            margin-left: 26%;
+            /*background-color: red;*/
+        }
+        #body .content h2 {
+            color: #97aeb3;
+            font-size: 24px;
+            font-weight: normal;
+            margin: 0;
+            padding: 20px 0;
+            text-transform: capitalize;
+        }
+        #body .content h3 {
+            background: url("images/icons.png") no-repeat 0 -350px;
+            color: #767676;
+            font-size: 14px;
+            font-weight: normal;
+            line-height: 30px;
+            margin: 0;
+            padding: 0;
+            text-indent: 30px;
+        }
+        #body .content p {
+            color: #767676;
+            line-height: 30px;
+            padding: 0;
+            font-size: 20px;
+            width: 900px;
+
+            margin-top: 10px;
+            margin-left: 20px;
+        }
+        #body .content p a {
+            color: #767676;
+            text-decoration: underline;
+        }
+        #body .content p a:hover {
+            color: #333;
+        }
+        #body > ul {
+            margin: 0;
+            padding: 0;
+        }
+        #body .content .title{
+            font-size: 25px;
+            font-weight: bold;
+        }
+        /******著作行高设置******/
+        #body .content ul li{
+            line-height:24px;
+            font-size:18px;
+            text-align: justify;
+            margin-top: 1%;
+        }
+        /**********content***********/
+        #footer {
+            width: 100%;
+            /*background-color: red;*/
+            height: 8%;
+            bottom: 0;
+            border-top: 2px solid #ffe600;
+            /*border-top-color: yellow;*/
+            overflow: hidden;
+        }
+
+        #footer p span {
+            margin-left: 42%;
+            display: inline-block;
+            margin-top: 0.5%;
+        }
+
+        #footer p span a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<div class="jumbotron">
+    <div class="container">
+        <!--<h3>WELCOME!</h3>-->
+        <img id="zjut_logo" src="images/180184206798644479.png" alt="">
+        <p class=" hidden-md hidden-sm hidden-xs"><span style="font-family: 隶书; font-size: 36px;">智能系统优化与生物信息学实验室</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-family: 'Times New Roman';font-size: 21px;">IOBIOLabs</span></p>
+    </div>
+    <!--导航条-->
+    <div id="nav">
+        <nav class="navbar navbar-inverse " style="background-color: #0756b3; border: none" id="nav2">
+            <ul id="table">
+                <li  ><a href="index.html">HOME</a></li>
+                <li><a href="./research.html">RESEARCH</a></li>
+                <li><a href="members.html">PEOPLE</a></li>
+
+            </ul>
+        </nav>
+    </div>
+</div>
+<div id="body">
+    <div class="content">
+        <ul>
+            <li class="title">著作</li>
+            <li><strong>张贵军</strong>，陈铭. WebGIS工程项目开发实践， 清华大学出版社, 2016.</li>
+            <li class="title">论文</li>
+            <li><i><strong>Guijun Zhang*</strong></i>, LaiFa Ma, Xiaoqi Wang, Xiaogen Zhou. Secondary structure and
+                contact guided differential evolution for protein structure prediction.<i><strong> IEEE/ACM Transactions
+                    on Computational Biology and Bioinformatics.</strong></i> DOI: 10.1109/TCBB.2018.2873691, 2018.
+            </li>
+            <li>Xiaogen Zhou,<i><strong>Guijun Zhang*</strong></i>. Differential evolution with underestimation- based
+                multimutation strategy.<i><strong> IEEE Transactions on Cybernetics. </strong></i>DOI: 10.1109/TCYB.
+                2018.2801287. 2018.
+            </li>
+            <li>Xiaohu Hao, <i><strong>Guijun Zhang*</strong></i>, Xiaogen Zhou. Guiding exploration in conformational
+                feature space with Lipschitz underestimation for ab-initio protein structure prediction.<i><strong>
+                    Computational Biology and Chemistry</strong></i>, DOI: 10.1016/j.compbiolchem.2018.02.003, 2018.
+            </li>
+            <li>Xiaogen Zhou, <i><strong>Guijun Zhang*</strong></i>. Abstract convex underestimation assisted
+                multistage differential evolution. <i><strong>IEEE Transactions on Cybernetics</strong></i>, 47(9):
+                2730-2741, 2017.
+            </li>
+            <li><i><strong>Guijun Zhang*</strong></i>, Xiaogen Zhou, Xufeng Yu, Xiaohu Hao. Li Yu. Enhancing protein
+                conformational space sampling using distance profile-guided differential evolution, <i><strong>IEEE/ACM
+                    Transactions on Computational Biology and Bioinformatics</strong></i>, 14(6): 1288-1301, 2017.
+            </li>
+            <li>Xiaohu Ha, <i><strong>Guijun Zhang*</strong></i>, Xiaogen Zhou. Conformational space sampling method using multi-subpopulation differential evolution for De novo protein structure prediction.<i><strong> IEEE Transactions on NanoBioscience</strong></i>, 16(7): 618-633, 2017
+            </li>
+            <li>Xiaohu Hao, <i><strong>Guijun Zhang*</strong></i>, Xiaogen Zhou, Xufeng Yu. A Novel Method Using
+                Abstract Convex Underestimation in Ab-initio Protein Structure Prediction for Guiding Search in
+                Conformational Feature Space. <i><strong>IEEE/ACM Transactions on Computational Biology and
+                    Bioinformatics</strong></i>, 13(5): 887-900, 2016.
+            </li>
+            <li>Xiaogen Zhou, <i><strong>Guijun Zhang*</strong></i>, Xiaohu Hao, Li Yu. A novel differential evolution
+                algorithm using abstract convex underestimate strategy for global optimization,<i><strong> Computers &
+                    Operations Research</strong></i>, 75(11): 132-149, 2016.
+            </li>
+            <li>Xiaogen Zhou, <i><strong>Guijun Zhang*</strong></i>, Xiaohu Hao. Li Yu, Enhanced differential evolution
+                using local Lipschitz underestimate strategy for computationally expensive optimization
+                problems,<i><strong> Applied Soft Computing</strong></i>, 48(11): 169-181, 2016.
+            </li>
+            <li><i><strong>Guijun Zhang*</strong></i>, Li Yu, Qike Shao. Hybrid algorithm for more accurate global
+                optimization of continuous multimodal function, <i><strong>Dynamics of Continuous Discrete and Impulsive
+                    Systems-Series A-Mathematical Analysis</strong></i>, 13(2) : 983-990, 2006.
+            </li>
+            <li><i><strong>Guijun Zhang*</strong></i>, Li Yu, Qike Shao. Continuous global optimization using enhanced
+                differential evolution algorithm,<i><strong> Dynamics of Continuous Discrete and Inpulsive System-Series
+                    B-Application and Algorithms</strong></i>, 13(5): 2503-2508, 2006.
+            </li>
+            <li><i><strong>Guijun Zhang*</strong></i>, Tihua Wu, Rong Ye. Global optimization over linear constraint
+                non-convex programming problem,<i><strong> Journal of Harbin Institute of Technology</strong></i>,
+                12(6): 650-655, 2005.
+            </li>
+            <li><i><strong>Guijun Zhang*</strong></i>, Tihua Wu, Rong Ye. Global optimization of pump configuration
+                problem using extended crowding genetic algorithm, <i><strong>Chinese Journal of Mechanical
+                    Engineering</strong></i>, 17(2): 247-252, 2004.
+            </li>
+            <li>王柳静, <strong>张贵军*</strong>, 周晓根. 基于状态估计反馈的策略自适应差分进化算法, <strong>自动化学报</strong>, 2018年，录用.</li>
+            <li>周晓根, <strong>张贵军*</strong>, 郝小虎, 俞立. 一种基于局部Lipschitz下界估计支撑面的差分进化算法, <strong>计算机学报</strong>, 39(12):
+                2631-2651, 2016.
+            </li>
+            <li>周晓根, <strong>张贵军*</strong>, 郝小虎. 局部抽象凸区域剖分差分进化算法, <strong>自动化学报</strong>, 41(7): 1315-1327, 2015.</li>
+            <li><strong>张贵军*</strong>, 何洋军, 郭海锋, 冯远静, 徐建明. 基于广义凸下界估计的多模态差分进化算法, <strong>软件学报</strong>, 24(6): 1177−1195,
+                2013.
+            </li>
+            <li>吴海涛, <strong>张贵军*</strong>, 洪榛, 俞立. 进化树拓扑路网构建及多停靠点路径规划方法研究, <strong>计算机学报</strong>, 35(5):964-971, 2012.
+            </li>
+            <li>周晓根, <strong>张贵军*</strong>, 梅珊, 明洁. 基于抽象凸估计选择策略的差分进化算法. <strong>控制理论与应用</strong>, 32(03): 388-397, 2015.
+            </li>
+            <li>邓勇跃, <strong>张贵军*</strong>. 基于局部抽象凸支撑面的多模态优化算法, <strong>控制理论与应用</strong>, 31(4): 458-466, 2014.</li>
+            <li><strong>张贵军*</strong>, 洪榛, 俞立, 郭海锋. 调速泵结构配置协调分解优化算法及实现, <strong>控制理论与应用</strong>, 28(5): 659-666, 2011.
+            </li>
+            <li><strong>张贵军*</strong>, 王信波, 俞立, 冯远静. 求解高维多模优化问题的自适应差分进化算法, <strong>控制理论与应用</strong>, 25(3): 862-867,
+                2008.
+            </li>
+            <li><strong>张贵军*</strong>, 俞立, 吴惕华. 线性约束非线性函数全局优化算法的研究, <strong>控制理论与应用</strong>, 22(1): 1-6, 2005.</li>
+            <li><strong>张贵军*</strong>, 王柳静,周晓根, 丁情. 基于共轭增强策略的差分进化算法, <strong>控制与决策</strong>，32(07): 1313-1318, 2017.
+            </li>
+            <li><strong>张贵军*</strong>, 陈铭, 周晓根. 动态小生境半径两阶段多模态差分进化算法, <strong>控制与决策</strong>, 31(07): 1185-1191, 2016.
+            </li>
+            <li><strong>张贵军*</strong>, 周晓根. 基于抽象凸下界估计的群体全局优化算法, <strong>控制与决策</strong>, 30(06): 1116-1120, 2015.</li>
+            <li><strong>张贵军*</strong>, 郝小虎, 周晓根, 秦传庆.动态步长蛋白质构象空间搜索方法, <strong>吉林大学学报</strong>, 46(2): 585-594, 2016.
+            </li>
+            <li><strong>张贵军*</strong>, 吴惕华. 三级泵优化配置问题算法设计与求解, <strong>上海交通大学学报</strong>, 39(2): 1984-1987, 2005.</li>
+            <li><strong>张贵军*</strong>, 吴惕华. CTSP问题稳态小生境算法的研究及仿真实现, <strong>系统仿真学报</strong>, 16(8): 1692-1696, 2004.</li>
+            <li><strong>张贵军*</strong>, 吴惕华. GIS线性矢量图形最优路径算法研究及仿真实现, <strong>系统仿真学报</strong>, 15(4) : 551-553,2003.</li>
+            <li class="title">会议论文</li>
+            <li>Xiaogen Zhou,<strong> Guijun Zhang*</strong>. Double estimation of distribution guided sampling
+                algorithm for De-novo protein structure prediction, CCC,大连, 9853-9858. 2017.
+            </li>
+            <li>Xiaogen Zhou, <strong>Guijun Zhang*</strong>, Xiaohu Hao, Li Yu, Dongwei Xu. Differential Evolution with
+                multi-stage strategies for global optimization. <i><strong>IEEE Congress on Evolutionary
+                    Computation</strong></i>, 2016 7.24~29. Canada, 2016.
+            </li>
+            <li><strong>Guijun Zhang*</strong>, Xufeng Yu, Xiaogen Zhou, Xiaohu Hao. A population-based conformational
+                optimal algorithm using replica-exchange in ab-initio protein structure prediction,<i> Chinese Control
+                    and Decision Conference <strong>(CCDC2016)</strong></i>, 2016.
+            </li>
+            <li class="title">发明专利</li>
+            <li><strong>张贵军</strong>, 俞立, 郭海锋, 王信波, 洪榛. 多级调速泵结构模型的配置方法, 2011.02(授权日), 中国, 授权号：ZL200810163693.0</li>
+            <li><strong>张贵军</strong>, 吴海涛, 洪榛, 俞立, 郭海锋, 何尚秋, 陈宁宁. 一种基于模糊匹配的中文地理编码确定方法, 2012.05(授权日), 中国,
+                授权号：ZL200910156650.4
+            </li>
+            <li><strong>张贵军</strong>, 吴海涛, 郭海锋, 洪榛, 何洋军, 金媚媚, 俞立. 一种基于进化树拓扑路网构建的路径规划确定方法, 2013.01(授权日),中国, 授权号：
+                ZL201010606776.X
+            </li>
+            <li><strong>张贵军</strong>, 程正华, 邓勇跃, 周晓根, 何洋军, 姚春龙, 张贝金. 一种多模态蛋白质构象空间搜索方法, 2015.10(授权日), 中国,
+                授权号：ZL201210593379.2
+            </li>
+            <li><strong>张贵军</strong>, 姚春龙, 张贝金, 陈麒伉, 程正华, 邓勇跃, 明洁, 刘玉栋, 秦传庆. 一种基于富网络属性路网的物流配送方法, 2016.02(授权日),
+                授权号：ZL201310027566.9
+            </li>
+            <li><strong>张贵军</strong>, 程正华, 姚春龙, 邓勇跃, 周晓根, 陈先跑. 基于差分进化和构象空间退火的蛋白质三维结构预测方法, 2016.04(授权日), 中国,
+                授权号：ZL201310299435.6
+            </li>
+            <li><strong>张贵军</strong>, 陈先跑, 周晓根, 秦传庆, 张贝金, 明洁, 刘玉栋. 一种基于蒙特卡洛局部抖动和片段组装的蛋白质三维结构预测方法, 2016.06(授权日), 中国,
+                授权号：ZL201310720089.4
+            </li>
+            <li><strong>张贵军</strong>, 邓勇跃, 程正华, 周晓根, 姚春龙, 张贝金, 明洁. 一种基于抽象凸下界估计的蛋白质结构预测方法, 2016.6(授权日), 中国,
+                授权号：ZL201310329575.3
+            </li>
+            <li><strong>张贵军</strong>, 陈铭, 明洁, 姚春龙, 张贝金, 程正华, 邓勇跃, 刘玉栋, 秦传庆. 一种基于meanshift分类的大规模客户点分类配送方法. 2016.11 (授权日),
+                中国, 授权号：ZL201310547712.0
+            </li>
+            <li><strong>张贵军</strong>, 秦传庆, 周晓根, 郝小虎, 张贝金, 明洁. 一种快速图形相似度判别方法. 2017.01 (授权日), 中国, 授权号：ZL201310677109.4
+            </li>
+            <li><strong>张贵军</strong>, 陈铭, 秦传庆, 周晓根, 梅珊, 李章维. 一种基于树搜索和片段组装的蛋白质结构预测方法. 2017.01 (授权日), 中国,
+                授权号：ZL201410138175.9
+            </li>
+            <li><strong>张贵军</strong>, 李栋炜, 夏华栋, 张贝金, 刘玉栋. 一种基于包围球模型的三维电缆相交检测方法. 2017.02(授权日), 中国, 授权号：ZL201410352387.7
+            </li>
+            <li><strong>张贵军</strong>, 郝小虎, 秦传庆, 周晓根, 程正华, 陈铭, 明洁. 一种构象空间动态步长搜索方法. 2017.04(授权日), 中国, 授权号：ZL201410362507.1
+            </li>
+            <li><strong>张贵军</strong>, 张贝金, 李栋炜, 夏华栋, 刘玉栋. 一种基于禁忌差分进化和GIS的配电网络线路规划方法. 2017.05(授权日), 中国,
+                授权号：ZL201410354190.7
+            </li>
+            <li><strong>张贵军</strong>, 郝小虎, 周晓根, 秦传庆, 梅珊. 一种基于片段组装的蛋白质构象空间优化方法. 2017.06(授权日), 中国, 授权号：ZL201410354134. 3
+            </li>
+            <li><strong>张贵军</strong>, 郝小虎, 周晓根, 陈凯, 梅珊, 俞旭锋, 李章维.一种基于简约空间抽象凸下界估计的蛋白质构象优化方法. 2017.06(授权日), 中国,
+                授权号：ZL201410686664.8
+            </li>
+            <li><strong>张贵军</strong>, 秦传庆, 周晓根, 郝小虎, 梅珊, 陈先跑, 李章维.一种基于树结构副本交换和片段组装的蛋白质结构预测方法. 2017.08(授权日), 中国,
+                授权号：ZL201410353661.2
+            </li>
+            <li><strong>张贵军</strong>, 明洁, 刘玉栋, 周晓根, 张贝金, 秦传庆. 一种基于多模式公交组合调度的时刻表编制方法. 2017.09(授权日), 中国,
+                授权号：ZL201410452172.2
+            </li>
+            <li><strong>张贵军</strong>, 郝小虎, 俞旭锋, 周晓根, 陈凯, 徐东伟. 一种用于蛋白质结构预测的距离谱构建方法. 2017.09(授权日), 中国,
+                授权号：ZL201510310053.8
+            </li>
+            <li><strong>张贵军</strong>, 俞旭锋, 郝小虎, 周晓根, 陈凯, 徐东伟. 一种基于副本交换的群体构象空间优化方法. 2017.10(授权日), 中国,
+                授权号：ZL201510157605.6
+            </li>
+            <li><strong>张贵军</strong>, 龚伟奇, 陈凯, 王宇凯, 姚俊, 贺智远, 周晓根. 一种基于Android平台的NFC读写方法. 2017.10(授权日), 中国,
+                授权号：ZL201510390416.3
+            </li>
+            <li><strong>张贵军</strong>, 俞旭峰, 周晓根, 郝小虎, 陈凯, 徐东伟. 一种基于Bolzmann概率密度函数的蛋白质残基间距离模型构建方法. 2017.12(授权日), 中国,
+                授权号：ZL201510796279.3
+            </li>
+            <li><strong>张贵军</strong>, 俞旭峰, 郝小虎, 周晓根, 陈凯, 徐东伟. 一种基于距离谱的群体构象空间优化方法. 2018.03(授权日), 中国, 授权号：ZL201510308750.X
+            </li>
+            <li><strong>张贵军</strong>, 周晓根, 王柳静, 郝小虎, 俞旭峰, 徐东伟, 李章维. 一种基于群体Lipschitz下界估计的蛋白质结构预测方法. 2018.04 (授权日), 中国,
+                授权号：ZL201610219089.X
+            </li>
+            <li><strong>张贵军</strong>，周晓根, 俞旭峰, 郝小虎, 王柳静, 徐东伟, 李章维. 一种基于阶段性多策略的群体构象空间采样方法. 2018.06(授权日), 中国,
+                授权号：ZL201610121504.8
+            </li>
+            <li><strong>张贵军</strong>，郝小虎, 俞旭锋, 周晓根, 陈凯, 徐东伟. 一种基于副本交换和局部增强策略的群体构象空间搜索方法，2018.06(授权日), 中国,
+                授权号：ZL201510310103.2
+            </li>
+            <li><strong>张贵军</strong>，郝小虎, 俞旭锋, 周晓根, 陈凯, 徐东伟. 一种局部增强的差分进化蛋白质构象空间搜索方法，2018.06(授权日), 中国,
+                授权号：ZL201510310223.2
+            </li>
+            <li><strong>张贵军</strong>，周晓根, 俞旭锋, 郝小虎, 王柳静, 徐东伟, 李章维. 一种基于局部Lipschitz支撑面的双层差分进化蛋白质结构预测方法, 2018.09(授权日), 中国,
+                授权号：ZL201610265960.X
+            </li>
+            <li><strong>张贵军</strong>，周晓根, 俞旭锋, 郝小虎, 王柳静, 徐东伟. 一种基于质心变异策略的差分进化蛋白质结构预测方法, 2018.09(授权日), 中国,
+                授权号：ZLZL201610390675.0
+            </li>
+        </ul>
+    </div>
+</div>
+<div id="footer">
+    <p>
+        <span>2018 &copy; IOBIOLabs.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+                href="http://www.gs.zjut.edu.cn/jsp/index.jsp">@浙江工业大学官网</a></span>
+    </p>
+</div>
+</body>
+</html>
