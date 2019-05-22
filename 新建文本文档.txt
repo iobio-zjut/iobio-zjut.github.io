@@ -1,0 +1,28 @@
+git init 
+
+git pull 远程仓库的ssh
+
+修改文件
+
+git add *
+git commit -m "信息"
+
+git push origin master
+
+
+关联远程仓库 
+
+git remote add origin(名字) 远程仓库的ssh
+
+查看有没有远程仓库
+git remote
+
+查看远程仓库的url
+git remote get-url origin(名字)
+
+
+关于ssh的问题
+
+因为可能第一次没有pull的权限，这个时候，你需要添加ssh-key到我们GitHub的settings的ssh-……去添加一个ssh的密钥
+
+https://www.jianshu.com/p/7aa20e9f2126
